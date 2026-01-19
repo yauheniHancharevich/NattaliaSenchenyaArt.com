@@ -1,39 +1,40 @@
-<script>
-  const galleryImages = document.querySelectorAll('.gallery img');
+// Create Modal Elements Dynamically
+const modal = document.createElement('div');
+modal.classList.add('modal');
+modal.innerHTML = `
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modal-img">
+`;
+document.body.appendChild(modal);
 
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      // Create overlay
-      const overlay = document.createElement('div');
-      overlay.className = 'image-overlay';
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.querySelector('.close-modal');
 
-      // Create close button
-      const closeBtn = document.createElement('span');
-      closeBtn.className = 'image-close';
-      closeBtn.innerHTML = '&times;'; // ✕ symbol
+// Select all images in all galleries
+const galleryImages = document.querySelectorAll('.gallery img');
 
-      // Create fullscreen image
-      const fullImg = document.createElement('img');
-      fullImg.src = img.src;
-      fullImg.alt = img.alt;
-
-      overlay.appendChild(closeBtn);
-      overlay.appendChild(fullImg);
-      document.body.appendChild(overlay);
-
-      // Close on X click
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent overlay click
-        overlay.remove();
-      });
-
-      // Close on ESC
-      document.addEventListener('keydown', function escHandler(e) {
-        if (e.key === 'Escape') {
-          overlay.remove();
-          document.removeEventListener('keydown', escHandler);
-        }
-      });
+galleryImages.forEach(image => {
+    image.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = image.src;
     });
-  });
-</script>
+});
+
+// Close when clicking X
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close when clicking outside the image
+modal.addEventListener('click', (e) => {
+    if (e.target !== modalImg) {
+        modal.style.display = 'none';
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        modal.style.display = 'none';
+    }
+});
