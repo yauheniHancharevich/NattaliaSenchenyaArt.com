@@ -206,3 +206,33 @@ section {
   transform: translateY(-3px);
   box-shadow: 0 5px 12px rgba(255, 105, 180, 0.4);
 }
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Individual logo buttons */
+.social-links a {
+  background-color: #ff69b4; /* vibrant pink */
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.social-links a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(255, 105, 180, 0.4);
+}
+
