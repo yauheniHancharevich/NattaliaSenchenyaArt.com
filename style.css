@@ -1,318 +1,178 @@
-/* =========================
-   GLOBAL RESET & BASE
-========================= */
+/* Color Palette & Variables */
+:root {
+  --pink: #FFD1DC;
+  --blue: #B3E5FC;
+  --yellow: #FFF9C4;
+  --accent-dark: #FF6F91;
+  --text-color: #444;
+  --white: #ffffff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.7;
-  color: #2c2c2c;
-  background: #fafafa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+  overflow-x: hidden;
 }
 
-/* =========================
-   TYPOGRAPHY
-========================= */
-.section-title {
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  text-align: center;
-  margin-bottom: 1rem;
-  letter-spacing: 0.5px;
-}
-
-.section_paragraph,
-.section-p,
-.about-text p {
-  max-width: 900px;
-  margin: 0.75rem auto;
-  padding: 0 1rem;
-  font-size: 1.05rem;
-  color: #444;
-}
-
-h3.section-title {
-  font-size: 1.5rem;
-  margin-top: 2rem;
-}
-
-/* =========================
-   HEADER & NAVIGATION
-========================= */
+/* HEADER & NAVIGATION */
 header {
+  background: linear-gradient(135deg, var(--pink), var(--blue));
+  padding: 20px 0;
+  border-bottom: 5px solid var(--yellow);
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .main-nav {
-  max-width: 1400px;
-  margin: auto;
-  padding: 1rem 1.5rem;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .artist-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  white-space: nowrap;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 20px;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  position: relative;
+  color: var(--text-color);
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #9c6b4f;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a[aria-current="page"]::after {
-  width: 100%;
+.nav-links a:hover {
+  color: var(--accent-dark);
 }
 
 .register-btn {
-  background: #9c6b4f;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
+  background-color: var(--yellow);
+  padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: background 0.3s ease;
+  color: var(--text-color);
+  font-weight: bold;
+  box-shadow: 0 4px 0px #e6df9a;
+  transition: 0.2s;
 }
 
 .register-btn:hover {
-  background: #7f543d;
+  transform: translateY(-2px);
 }
 
-/* =========================
-   SECTIONS & ACCENTS
-========================= */
-main section {
-  padding: 4rem 1rem;
+/* SECTION STYLING */
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.accent-1 {
-  background: #f1ece8;
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--accent-dark);
+  position: relative;
 }
 
-.accent-2 {
-  background: linear-gradient(135deg, #f7f2ee, #e8ddd4);
+.section_paragraph {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
-.accent-3 {
-  background: #ebe5df;
-}
+/* BACKGROUND ACCENTS */
+.accent-1 { background-color: var(--blue); border-radius: 50px 0 50px 0; }
+.accent-2 { background-color: var(--pink); border-radius: 0 50px 0 50px; }
+.accent-3 { background-color: var(--yellow); }
 
-/* =========================
-   BUTTONS
-========================= */
-.resume-btn {
-  display: inline-block;
-  margin: 1.5rem auto 0;
-  padding: 0.75rem 2rem;
-  border-radius: 30px;
-  background: #2c2c2c;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.resume-btn:hover {
-  background: #9c6b4f;
-}
-
-/* =========================
-   LISTS
-========================= */
-.art-list {
-  max-width: 700px;
-  margin: 1.5rem auto;
-  padding-left: 1.5rem;
-}
-
-.art-list li {
-  margin-bottom: 0.5rem;
-}
-
-/* =========================
-   GALLERY (5 COLUMNS)
-========================= */
+/* PHOTO GALLERY (The "Line Order" Grid) */
 .gallery {
-  max-width: 1600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0;
 }
 
 .gallery img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 6px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  border: 5px solid white;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .gallery img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transform: scale(1.08) rotate(2deg);
+  border-color: var(--accent-dark);
 }
 
-/* =========================
-   ABOUT PAGE LAYOUT
-========================= */
-.about-section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 4rem 1rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
+/* LIGHTBOX MODAL (JavaScript Interactive Part) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.9);
   align-items: center;
+  justify-content: center;
 }
 
-.about-image img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-/* =========================
-   FORMS
-========================= */
-form {
-  max-width: 600px;
-  margin: 3rem auto;
-  padding: 1.5rem;
-  background: #fff;
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border: 10px solid white;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-fieldset {
-  border: none;
-}
-
-legend {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-input[type="submit"] {
-  background: #9c6b4f;
+.close-modal {
+  position: absolute;
+  top: 20px; right: 30px;
   color: white;
-  border: none;
+  font-size: 50px;
   cursor: pointer;
-  padding: 0.7rem 2rem;
-  border-radius: 25px;
 }
 
-input[type="submit"]:hover {
-  background: #7f543d;
+/* BUTTONS */
+.resume-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: var(--accent-dark);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #2c2c2c;
-  color: #eee;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.social-links {
-  margin-top: 0.8rem;
-}
-
-.social-links a {
-  color: #eee;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-  color: #9c6b4f;
-}
-
-/* =========================
-   RESPONSIVE BREAKPOINTS
-========================= */
-@media (max-width: 1200px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
-  .main-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .about-section {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .artist-name {
-    font-size: 1.1rem;
-  }
+  .main-nav { flex-direction: column; gap: 15px; }
+  .gallery img { width: 45%; height: 180px; } /* Two images per line on mobile */
+  .section-title { font-size: 1.8rem; }
 }
