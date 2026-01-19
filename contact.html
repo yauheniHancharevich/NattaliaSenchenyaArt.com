@@ -29,41 +29,38 @@
   </nav>
 </header>
 
-   <h2 class="section-title">Contact Me</h2>
+  <section class="contact-section">
 
-<form action="mailto:nataliasenchenyaart@gmail.com" method="post" enctype="text/plain">
+  
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Contact Me!</h3>
+      <p>Whether you're interested in prices, have questions about my classes, or just want to say hi, I'd love to hear from you.</p>
+      <div class="artistic-blob">🎨</div>
+    </div>
 
-  <fieldset>
-    <legend>Send Me a Message</legend>
+    <form action="mailto:nataliasenchenyaart@gmail.com" method="post" enctype="text/plain" class="artistic-form">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="Name" placeholder="Natalia Senchenya" required>
+      </div>
 
-    <p class="section-p">
-      <label>
-        Your Name:<br>
-        <input type="text" name="Name" required>
-      </label>
-    </p>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="Email" placeholder="hello@email.com" required>
+      </div>
 
-    <p class="section-p">
-      <label>
-        Your Email:<br>
-        <input type="email" name="Email" required>
-      </label>
-    </p>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="Message" rows="5" placeholder="Tell me about your vision..." required></textarea>
+      </div>
 
-    <p class="section-p" >
-      <label>
-        Your Message:<br>
-        <textarea name="Message" rows="6" cols="40" required></textarea>
-      </label>
-    </p>
-
-    <p class="section-p" align="center">
-      <input type="submit" value="Send Message">
-    </p>
-
-  </fieldset>
-
-</form>
+      <button type="submit" class="submit-btn">
+        Send Message <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</section>
 
 
     <footer>
